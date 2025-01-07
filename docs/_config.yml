@@ -21,14 +21,13 @@
 title: NEMO
 email: maxdabagia@gatech.edu
 description: >- # this means to ignore newlines until "baseurl:"
-  A website describing NEMO, a model of the brain, and some of the interesting things it can do. 
-  Developed by Santosh Vempala, Christos Papadimitriou, Max Dabagia, & Dan Mitropolsky. This site is maintained by Max Dabagia.
-baseurl: "" # the subpath of your site, e.g. /blog
+  A model of the brain
+#baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  mdabagia
 
 # Build settings
-remote_theme: jekyll/minima
+theme: minima
 plugins:
   - jekyll-feed
 
