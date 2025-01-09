@@ -9,7 +9,7 @@ layout: home
 
 
 
-NEMO is a mathematical and computational model of parts of the brain, which is meant to provide a concrete hypothesis as to how complex cognition can arise from the activity of neurons. Its development is an ongoing project, principally involving [Christos Papadimitriou](https://www.engineering.columbia.edu/faculty-staff/directory/christos-papadimitriou), [Santosh Vempala](https://faculty.cc.gatech.edu/~vempala/), [Max Dabagia](https://mdabagia.github.io/), and [Dan Mitropolsky](https://dmitropolsky.github.io/). 
+NEMO is a mathematical and computational model of parts of the brain, which is meant to provide a concrete hypothesis as to how complex cognition can arise from the activity of neurons. Its exploration and development is an ongoing project, principally involving [Christos Papadimitriou](https://www.engineering.columbia.edu/faculty-staff/directory/christos-papadimitriou), [Santosh Vempala](https://faculty.cc.gatech.edu/~vempala/), [Max Dabagia](https://mdabagia.github.io/), and [Dan Mitropolsky](https://dmitropolsky.github.io/). 
 
 This website collects outlines the NEMO model and collects the main results related to it. NEMO is far from a complete hypothesis about how intelligence arises from the brain, and is best considered a set of core assumptions that will likely be expanded in the future to yield a model that could genuinely explain cognition.
 
