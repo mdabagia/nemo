@@ -95,6 +95,9 @@ class FFArea():
             return idx_to_vec(self.activations, self.n_neurons)
         else:
             return self.activations
+
+    def set_input_weights(self, pre_idx, post_idx, w, area=0):
+        self.input_weights[area][np.ix_(pre_idx, post_idx)] = w * (self.input_weights[area][np.ix_(pre_idx, post_idx)] > 0)
         
 class RecurrentArea(FFArea):
     def __init__(self, n_inputs, n_neurons, cap_size, density, plasticity, norm_init=False):
@@ -114,6 +117,9 @@ class RecurrentArea(FFArea):
     def normalize(self):
         super().normalize()
         self.recurrent_weights /= self.recurrent_weights.sum(axis=0, keepdims=True)
+
+    def set_recurrent_weights(self, pre_idx, post_idx, w):
+        self.recurrent_weights[np.ix_(pre_idx, post_idx)] = w * (self.recurrent_weights[np.ix_(pre_idx, post_idx)] > 0)
         
 class RefractedArea(FFArea):
     def __init__(self, n_inputs, n_neurons, cap_size, density, plasticity, norm_init=False):
@@ -232,3 +238,20 @@ class PFANetwork():
         
     def read(self, dense=False):
         return self.symbol_area.read(dense=dense)
+
+class AttentionArea(RecurrentArea):
+    def __init__(self, n_inputs, n_neurons, cap_size, density, plasticity, norm_init=False):
+        super().__init__(n_inputs, n_neurons, cap_size, density, plasticity, norm_init)
+    
+    def reset(self):
+        super().reset()
+        self.recurrent_change = np.zeros_like(self.recurrent_weights)
+
+    def decay_weights(self):
+        self.recurrent_weights -= self.recurrent_change
+        self.recurrent_change = np.zeros_like(self.recurrent_weights)
+    
+    def update(self, new_activations):
+        #note: only recurrent update
+        self.recurrent_change[np.ix_(self.activations, new_activations)] = self.plasticity * self.recurrent_weights[np.ix_(self.activations, new_activations)]
+        self.recurrent_weights[np.ix_(self.activations, new_activations)] = (1 + self.plasticity) * (self.recurrent_weights[np.ix_(self.activations, new_activations)] > 0)
